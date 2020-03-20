@@ -1,0 +1,66 @@
+<html>
+    <head>
+
+    </head> 
+
+    <body>
+        <div class = 'grid-container' id = 'container'></div>
+    </body>
+
+
+
+    <script>
+
+        function divCreator(numberOfSquares){
+            for(i=0;i < numberOfSquares ;i++){
+                var newDiv = document.createElement('div');
+                newDiv.classList.add("grid-item"); 
+                var containerDiv = document.getElementById("container"); 
+                containerDiv.appendChild(newDiv);
+            }
+        }
+       
+        var nbs = 16
+        divCreator(nbs);
+         
+        var sqr= Math.floor(nbs/4)
+        
+        var style = document.createElement('style');
+        style.innerHTML = `
+            .grid-container {
+              display: grid;
+              grid-template-columns: repeat(${sqr}, 150px);
+              grid-template-rows: repeat(${sqr}, 150px);
+              background-color: #2196F3;
+                }
+            .grid-item {
+              background-color: rgba(255, 255, 255, 0.8);
+              border: 1px solid rgba(0, 0, 0, 0.8);
+                }
+                `
+
+      
+        document.head.appendChild(style);
+
+
+
+        var listOfDiv = document.getElementsByClassName("grid-item");
+        
+        addListen(listOfDiv) 
+
+        function addListen(element){
+            for (const divEl of element){
+                divEl.addEventListener("mouseover"
+                        , function() {
+                            divEl.style.backgroundColor = "black"});
+            }
+
+        }
+        
+    </script>
+    
+
+
+
+
+</html>

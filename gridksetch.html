@@ -4,58 +4,73 @@
     </head> 
 
     <body>
+        <button onclick="genNewSketch()" type="button">Click Me!</button>
         <div class = 'grid-container' id = 'container'></div>
     </body>
 
 
+      <script>
 
-    <script>
 
         function divCreator(numberOfSquares){
-            for(i=0;i < numberOfSquares ;i++){
+           for(i=0;i < numberOfSquares ;i++){
                 var newDiv = document.createElement('div');
                 newDiv.classList.add("grid-item"); 
-                var containerDiv = document.getElementById("container"); 
+              
+                var containerDiv =  document.getElementById('container')
                 containerDiv.appendChild(newDiv);
             }
         }
-       
-        var nbs = 16
-        divCreator(nbs);
-         
-        var sqr= Math.floor(nbs/4)
-        
-        var style = document.createElement('style');
-        style.innerHTML = `
-            .grid-container {
-              display: grid;
-              grid-template-columns: repeat(${sqr}, 150px);
-              grid-template-rows: repeat(${sqr}, 150px);
-              background-color: #2196F3;
-                }
-            .grid-item {
-              background-color: rgba(255, 255, 255, 0.8);
-              border: 1px solid rgba(0, 0, 0, 0.8);
-                }
-                `
-
       
-        document.head.appendChild(style);
 
+    function genNewSketch(){
+            var node = document.getElementById('container');
+node.innerHTML = "";
+            var nbs  = prompt("Number of squares", "Enter number of squares"); 
+            divCreator(nbs);
+            var sketchSize = 400;
+            var nrRows = Math.round(Math.sqrt(nbs))
+            var squareSize = Math.round(sketchSize/nrRows) 
+             
+            var sqr= Math.floor(nbs/4);
+           
+            
 
+            var style = document.createElement('style');
+            style.innerHTML = `
+                .grid-container {
+                  display: grid;
+                  grid-template-columns: repeat(${nrRows}, ${squareSize}px);
+                  grid-template-rows: repeat(${nrRows}, ${squareSize}px);
 
-        var listOfDiv = document.getElementsByClassName("grid-item");
+                    }
+                .grid-item {
+                  background-color: rgba(255, 255, 255, 0.8);
+                  border: 1px solid rgba(0, 0, 0, 0.8);
+                  
+                  background-color: #2196F3;
+                    }
+                    `
+               
+            document.head.appendChild(style);
         
-        addListen(listOfDiv) 
+            var listOfDiv = document.getElementsByClassName("grid-item");
+            
+            addListen(listOfDiv);
 
-        function addListen(element){
-            for (const divEl of element){
-                divEl.addEventListener("mouseover"
-                        , function() {
-                            divEl.style.backgroundColor = "black"});
+            function addListen(element){
+                for (const divEl of element){
+                    divEl.addEventListener("mouseover"
+                            , function() {
+                                divEl.style.backgroundColor = "black"});
+                }
+
             }
+    }
+     
 
-        }
+
+
         
     </script>
     
